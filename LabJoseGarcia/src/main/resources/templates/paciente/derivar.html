@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <link rel="icon" th:href="@{/img/descarga.png}" type="image/x-icon" />
+  <title>Derivar Paciente</title>  <!-- Titulo a cambiar-->
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/fontawesome-all.min.css}">
+</head>
+<body>
+
+<div class='container'>
+
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+      <a class="navbar-brand" >
+        <img th:src="@{/img/descarga.png}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        Homepage
+      </a><!-- Enlace principal a cambiar-->
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbar-app">
+        <!--<ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#/user/signIn">Ingresar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/user/signUp">Registrarse</a>
+            </li>
+        </ul>-->
+        <ul class="navbar-nav"> <!-- Enlace a otras listas y/o paginas-->
+          <li class="nav-item active">
+            <a class="nav-link" th:href="@{/paciente/listar}">Pacientes</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" th:href="@{/hospital/listar}"> Hospitales</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" th:href="@{/doctor/listar}"> Doctores</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+
+
+
+<main>
+  <div class="container px-4 py-5">
+    <h1 class="pb-2 mb-3 border-bottom">Derivar Paciente</h1>
+
+    <form method="post" th:action="@{/paciente/derivado}" class="mt-2">
+
+      <div class="mb-3">
+        <label for="category" class="form-label">Derivar del doctor</label>
+        <select name="id1" id="category" class="form-select">
+          <option th:each="doctor : ${lista}"
+                  th:value="${doctor.id}"
+                  th:text="${doctor.nombre}"></option>
+        </select>
+      </div>
+      <!-- Al final enviaras esos id1 y id2 al controller y con otro
+      metodo se guardaran esos ids en un query que haga el cambio requerido
+      Supongo que el query debe estar en pacienterepository xd-->
+      <div class="mb-3">
+        <label for="category" class="form-label">Al doctor</label>
+        <select name="id2" id="category2" class="form-select">
+          <option th:each="doctor : ${lista}"
+                  th:value="${doctor.id}"
+                  th:text="${doctor.nombre}"></option>
+        </select>
+      </div>
+
+      <a th:href="@{/paciente/listar}" class="btn btn-danger">Cancelar</a>
+      <button type="submit" class="btn btn-primary">Cambiar</button>
+    </form>
+
+  </div>
+</main>
+
+  <footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid">
+      <div class="d-flex align-items-center justify-content-between small">
+        <div class="text-muted">Gtics 2023-1</div>
+      </div>
+    </div>
+  </footer>
+</div>
+<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
